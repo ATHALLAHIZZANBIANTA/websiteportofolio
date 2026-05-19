@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athallah Bianta - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+
+    <!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav">
+    <a href="#home" class="bottom-nav-item" data-section="home" title="Home">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/><path d="M9 22V12h6v10"/></svg>
+    </a>
+    <a href="#aboutme" class="bottom-nav-item" data-section="aboutme" title="About">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </a>
+    <a href="#skills" class="bottom-nav-item" data-section="skills" title="Skills">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+    </a>
+    <a href="#projects" class="bottom-nav-item" data-section="projects" title="Projects">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    </a>
+    <a href="#experience" class="bottom-nav-item" data-section="experience" title="CV">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+    </a>
+    <div class="bottom-nav-divider"></div>
+    <button class="bottom-nav-theme" id="bottomThemeToggle" title="Toggle theme">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+    </button>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const bottomNav = document.getElementById('bottomNav');
+    const bottomThemeToggle = document.getElementById('bottomThemeToggle');
+    const homeSection = document.getElementById('home');
+    const allSections = document.querySelectorAll('section[id]');
+
+    if (bottomThemeToggle) {
+        bottomThemeToggle.addEventListener('click', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.click();
+            }
+        });
+    }
+
+    if (homeSection && bottomNav) {
+        const bottomNavObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.target.id === 'home') {
+                    if (entry.isIntersecting) {
+                        bottomNav.classList.remove('visible');
+                    } else {
+                        bottomNav.classList.add('visible');
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        bottomNavObserver.observe(homeSection);
+    }
+
+    if (allSections.length) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-section') === entry.target.id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+
+        allSections.forEach(s => sectionObserver.observe(s));
+
+        const navItems = document.querySelectorAll('.nav-links li');
+        const activeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        const link = item.querySelector('a');
+                        if (link && link.getAttribute('href') === '#' + entry.target.id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+
+        allSections.forEach(s => activeObserver.observe(s));
+    }
+});
+</script>
+
+    
+<body>
+
+   <div class="landing-page" id="landingPage">
+  <div class="orbit-scene" id="orbitScene">
+    <div class="orbit-ring"></div>
+    <div class="photo-orbit" id="photoOrbit"></div>
+    <div class="orbit-center">
+      <p class="orbit-name">welcome to</p>
+      <p class="orbit-sub">my exclusive portfolio!</p>
+    
+    </div>
+  </div>
+  <button class="landing-btn" id="startBtn">START</button>
+</div>
+
+    <div class="container portfolio-container" id="portfolioContainer">
+        <nav>
+            <div class="logo">athprjct.</div>
+            <ul class="nav-links" id="navLinks">
+                <li class="active"><a href="#home">home</a></li>
+                <li><a href="#aboutme">about me</a></li>
+                <li><a href="#skills">skills</a></li>
+                <li><a href="#projects">project</a></li>
+                <li><a href="#experience">cv</a></li>
+    
+            </ul>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="status-clock">
+                    <div class="live-clock" id="liveClock">00:00:00</div>
+                    <div class="status-indicator">
+                        <div class="status-dot available" id="statusDot"></div>
+                        <span class="status-text" id="statusText">Available</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero" id="home">
+            <div class="hero-text">
+                <span class="label">Anak Tunggal sukses dunia akhirat.</span>
+                <h1>ATHALLAH<br>BIANTA.</h1>
+                <p class= "typing">Hai panggil saya Atha. Saya memiliki ketertarikan besar di bidang Network Engineering dan senang mempelajari cara kerja jaringan komputer secara mendalam. Saya terbiasa menggunakan tools seperti Mikrotik dan Cisco Packet Tracer untuk memahami konfigurasi dan troubleshooting jaringan. 
+                    Saya juga terus mengembangkan kemampuan agar dapat menjadi profesional yang andal di bidang jaringan.</p>
+
+            </div>
+            <div class="hero-image">
+                <img class="dark-mode-img" src="WhatsApp Image 2026-04-15 at 15.01.01.jpeg" alt="Athallah Bianta">
+                <img class="light-mode-img" src="WhatsApp Image 2026-04-15 at 14.51.37.jpeg" alt="Athallah Bianta">
+            </div>
+        </section>
+
+        <div class="section-header">
+            <h2>ABOUT ME</h2>
+            <div class="line"></div>
+        </div>
+
+        <section class="grid" id="aboutme">
+            <div class="card col-span-2">
+                <h3>Riwayat Keluarga</h3>
+                <p> Saya merupakan anak tunggal yang tinggal bersama kedua orang tua saya di rumah. Hidup bertiga terkadang membuat saya merasa sepi, karena tidak memiliki kakak atau adik untuk berbagi cerita setiap saat. Namun, dari situ saya belajar bahwa menjadi anak tunggal membuat saya harus lebih mandiri dan dewasa lebih cepat, karena banyak hal yang harus saya lakukan sendiri tanpa bergantung pada saudara.</p>
+                <div class="family-photos-grid">
+                    <div class="family-photo-card">
+                        <div class="family-photo-img">
+                            <img src="WhatsApp Image 2026-04-18 at 12.52.25.jpeg" alt="pict1" style="background: rgba(255,255,255,0.1);">
+                        </div>
+                        <div class="family-photo-name">moment</div>
+                    </div>
+                    <div class="family-photo-card">
+                        <div class="family-photo-img">
+                            <img src="WhatsApp Image 2026-04-18 at 13.56.38.jpeg" alt="pict2" style="background: rgba(255,255,255,0.1);">
+                        </div>
+                        <div class="family-photo-name">moment</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Riwayat Pendidikan</h3>
+                <div class="education-timeline">
+                    <div class="timeline-item-edu">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2013 -2015</div>
+                            <p class="timeline-school">TK NURUL ILMI</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item-edu">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2015 - 2021</div>
+                            <p class="timeline-school">SDN 01 SENDANGMULYO</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item-edu">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2021 - 2024</div>
+                            <p class="timeline-school">SMPN 42 SEMARANG</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item-edu">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024 - 2028</div>
+                            <p class="timeline-school">SMKN 7 SEMARANG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card contact-card">
+                <p class="contact-heading">Let's Connect</p>
+                <div class="social-grid">
+                    <a href="https://www.instagram.com/_ijannb?igsh=NGV0OWt6NWh5cXp6&utm_source=qr" class="social-btn" target="_blank">
+                        <span class="social-icon">📸</span>
+                        <span class="social-text">Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@zannnneoeoeoe?_r=1&_t=ZS-95dOL7uB6pN" class="social-btn" target="_blank">
+                        <span class="social-icon">🎵</span>
+                        <span class="social-text">TikTok</span>
+                    </a>
+                    <a href="https://github.com/yourusername" class="social-btn" target="_blank">
+                        <span class="social-icon">🐱</span>
+                        <span class="social-text">GitHub</span>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-btn">
+                        <span class="social-icon">✉️</span>
+                        <span class="social-text">Email</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card col-span-2 vision-flex">
+                <div>
+                    <h3>Cita-cita & Vision 2026</h3>
+                    <p>Menguasai dan jago didalam Network Science.</p>
+                </div>
+                <div>
+                    <div class="timeline-item">
+                        <span>Minat</span>
+                        <span class="text-white">Networking Engginer, IT Technician, Technical Support.</span>
+                    </div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <span>Hobi</span>
+                        <span class="text-white">Swimming, Explore Nature.</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <div class="section-header">
+            <h2>Skills & Expertise</h2>
+            <div class="line"></div>
+        </div>
+
+        <section class="skills-container" id="skills" style="margin-bottom: 8rem;">
+            <div class="tech-grid">
+                <div class="card" style="padding: 1.5rem;">
+                    <span style="font-size: 0.7rem; color: var(--text-muted);">Development</span>
+                    <h4 style="margin: 0.5rem 0;">HTML, CSS & Linux</h4>
+                    <p style="font-size: 0.8rem;">Tailwind, Ubuntu Enviroment</p>
+                </div>
+                <div class="card" style="padding: 1.5rem;">
+                    <span style="font-size: 0.7rem; color: var(--text-muted);">Logic</span>
+                    <h4 style="margin: 0.5rem 0;">Mikrotik</h4>
+                    <p style="font-size: 0.8rem;">Network Configuration, Routing</p>
+                </div>
+                <div class="card" style="padding: 1.5rem;">
+                    <span style="font-size: 0.7rem; color: var(--text-muted);">Problem Solving</span>
+                    <h4 style="margin: 0.5rem 0;">Troubleshooting</h4>
+                    <p style="font-size: 0.8rem;">Debugging</p>
+                </div>
+                <div class="card" style="padding: 1.5rem;">
+                    <span style="font-size: 0.7rem; color: var(--text-muted);">Design</span>
+                    <h4 style="margin: 0.5rem 0;">Figma</h4>
+                    <p style="font-size: 0.8rem;">UI Design, Prototyping</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="progress-bar-container">
+                    <div class="progress-label"><span>Leadership</span><span>90%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-label"><span>Public Speaking</span><span>85%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-label"><span>IoT Development</span><span>80%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="card quote-box">
+                    <p>"Proses yang kuat bisa menghasilkan hasil yang luar biasa."</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-header">
+    <h2>Portofolio</h2>
+    <div class="line"></div>
+</div>
+ 
+<section id="projects">
+    <div class="portfolio-intro">
+        <p class="portfolio-label">KARYA</p>
+        
+    </div>
+ 
+    <!-- Filter Tabs -->
+    <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="achievements">Achievements</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="desain">Desain</button>
+        <button class="filter-btn" data-filter="jaringan">Jaringan</button>
+        <button class="filter-btn" data-filter="lainnya">Lainnya</button>
+    </div>
+ 
+    <!-- Portfolio Cards Grid -->
+    <div class="portfolio-grid" id="portfolioGrid">
+ <!-- Card 7 - Web -->
+        <div class="portfolio-card" data-category="achievements">
+            <div class="portfolio-card-img">
+                <img src="Screenshot 2026-05-04 092956.png" alt="Certi Olim">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Achievment</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">OSPP X HIMAFI ITB 2025 </h3>
+                <p class="portfolio-card-desc"></p>
+                <button class="portfolio-card-btn">Achievement ↗</button>
+            </div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="portfolio-card" data-category="achievements">
+            <div class="portfolio-card-img">
+                <img src="certiCOM-1.png" alt="Sertifikat COM 2026">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Achievements</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Clash Of Mind 2026</h3>
+                <p class="portfolio-card-desc">Kompetisi otak yang menguji kemampuan berpikir kritis dan kreatif dalam menyelesaikan masalah kompleks.</p>
+                <button class="portfolio-card-btn">Achievement ↗</button>
+            </div>
+        </div>
+ 
+        <!-- Card 2 -->
+        <div class="portfolio-card" data-category="achievements">
+            <div class="portfolio-card-img">
+                <img src="Screenshot 2026-05-04 092956.png" alt="OSPP 2025">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Achievements</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Olimpiade Sains Prestasi Pelajar 2025</h3>
+                <p class="portfolio-card-desc">Kompetisi sains tingkat nasional dengan fokus pada inovasi dan penerapan teknologi.</p>
+                <button class="portfolio-card-btn">Achievement ↗</button>
+            </div>
+        </div>
+ 
+        <!-- Card 3 -->
+        <div class="portfolio-card" data-category="achievements">
+            <div class="portfolio-card-img">
+                <img src="PIAGAMCISCOATHA (1)-1.png" alt="Cisco Certifikat 2025">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Achievements</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Certifikat Cisco 2025</h3>
+                <p class="portfolio-card-desc">Sertifikat keahlian dalam jaringan komputer dan teknologi informasi dari Cisco.</p>
+                <button class="portfolio-card-btn">Achievement ↗</button>
+            </div>
+        </div>
+ 
+        <!-- Card 4 - Web -->
+        <div class="portfolio-card" data-category="web">
+            <div class="portfolio-card-img">
+                <img src="Screenshot 2026-05-04 095326.png" alt="Web Project">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Web</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Sole Source Web</h3>
+                <p class="portfolio-card-desc">Website e-commerce untuk menjual produk sepatu.</p>
+                <a href="https://sole-source.vercel.app/" target="_blank" class="portfolio-card-btn">Lihat Project ↗</a>
+            </div>
+        </div>
+ 
+        <!-- Card 5 - Achievement -->
+        <div class="portfolio-card" data-category="achievements">
+            <div class="portfolio-card-img">
+                <img src="SERTIFIKAT PAK ISNA (1).jpg" alt="Desain UI">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Achievement</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Certifikat of Code</h3>
+                <p class="portfolio-card-desc">Certifikat mapel cybersecurity </p>
+                <button class="portfolio-card-btn">Achievment</button>
+            </div>
+        </div>
+ 
+        <!-- Card 6 - Jaringan -->
+        <div class="portfolio-card" data-category="jaringan">
+            <div class="portfolio-card-img">
+                <img src="Screenshot 2025-10-19 195014.png" alt="Jaringan">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Jaringan</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Konfigurasi Mikrotik & VLAN</h3>
+                <p class="portfolio-card-desc">Konfigurasi routing, VLAN, dan firewall menggunakan Mikrotik RouterOS untuk jaringan lab sekolah.</p>
+                <button class="portfolio-card-btn">Lihat Project ↗</button>
+            </div>
+        </div>
+
+    
+        <!-- Card 8 - Desain -->
+        <div class="portfolio-card" data-category="desain">
+            <div class="portfolio-card-img">
+                <img src="Screenshot 2026-05-04 082512.png" alt="Web Design">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Desain UI/UX</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">Desain UI/UX</h3>
+                <p class="portfolio-card-desc">Desain antarmuka dan pengalaman pengguna untuk aplikasi web dan mobile.</p>
+                <button class="portfolio-card-btn">Lihat Desain ↗</button>
+            </div>
+        </div>
+
+        <!-- Card 9 - Lainnya -->
+        <div class="portfolio-card" data-category="lainnya">
+            <div class="portfolio-card-img">
+                <img src="WhatsApp Image 2026-05-18 at 07.39.22.jpeg" alt="Other Project">
+                <div class="portfolio-card-overlay">
+                    <span class="portfolio-card-tag">Lainnya</span>
+                </div>
+            </div>
+            <div class="portfolio-card-body">
+                <h3 class="portfolio-card-title">LKBB NASIONAL di Tangerang</h3>
+                <p class="portfolio-card-desc">vide penampilan pengalaman lkbb yang pernah saya ikuti.</p>
+                <a href="https://youtu.be/ruWwQlw1kho?si=YEON9deEXyF6aRaZ" target="_blank" class="portfolio-card-btn">Lihat Video ↗</a>
+            </div>
+        </div>
+ 
+    </div>
+</section>
+
+<div class="portfolio-modal" id="portfolioModal" aria-hidden="true">
+  <div class="portfolio-modal-inner">
+    <button class="portfolio-modal-close" id="portfolioModalClose" aria-label="Close preview">×</button>
+    <div class="portfolio-modal-content">
+      <img id="portfolioModalImage" src="" alt="Achievement preview">
+    </div>
+    <div class="portfolio-modal-caption" id="portfolioModalCaption"></div>
+  </div>
+</div>
+
+<div class="section-header">
+    <h2>Curriculum Vitae</h2>
+    <div class="line"></div>
+</div>
+ 
+<section id="experience">
+ 
+    <!-- CV Header -->
+    <div class="cv-header card">
+        <div class="cv-header-left">
+            <div class="cv-photo-placeholder">
+                <!-- Ganti src dengan foto kamu -->
+                <img src="Screenshot 2026-05-04 104907.png" alt="Athallah Izzan Bianta" class="cv-photo dark-mode-img">
+                <img src="Screenshot 2026-05-04 104907.png" alt="Athallah Izzan Bianta" class="cv-photo light-mode-img">
+            </div>
+        </div>
+        <div class="cv-header-right">
+            <p class="cv-header-label">CURRICULUM VITAE</p>
+            <h2 class="cv-name">Athallah Izzan Bianta</h2>
+            <p class="cv-tagline">Network Engineering Student · SMKN 7 Semarang</p>
+            <div class="cv-contact-row">
+                <span class="cv-contact-chip"> 🏠︎ Semarang</span>
+                <span class="cv-contact-chip"> ☎ 085865177936</span>
+                <span class="cv-contact-chip"> ✉︎ athaizzan1@gmail.com</span>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- CV Body -->
+    <div class="cv-body">
+ 
+        <!-- LEFT COLUMN -->
+        <div class="cv-col">
+ 
+            <!-- Data Pribadi -->
+            <div class="cv-block card">
+                <h3 class="cv-block-title">DATA PRIBADI</h3>
+                <div class="cv-data-list">
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Nama Lengkap</span>
+                        <span class="cv-data-value">Athallah Izzan Bianta</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Tempat, Tgl Lahir</span>
+                        <span class="cv-data-value">Semarang, 28 Februari 2009</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Jenis Kelamin</span>
+                        <span class="cv-data-value">Laki-laki</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Agama</span>
+                        <span class="cv-data-value">Islam</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Alamat</span>
+                        <span class="cv-data-value">KPA 3 Blok F1 No.75, Semarang</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">No. HP</span>
+                        <span class="cv-data-value">085865177936</span>
+                    </div>
+                    <div class="cv-data-item">
+                        <span class="cv-data-label">Email</span>
+                        <span class="cv-data-value">athaizzan1@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Skills -->
+            <div class="cv-block card">
+                <h3 class="cv-block-title">SKILLS</h3>
+                <div class="cv-skills">
+                    <div class="cv-skill-item">
+                        <div class="cv-skill-label">
+                            <span>HTML & CSS</span>
+                            <span class="cv-skill-pct">89%</span>
+                        </div>
+                        <div class="cv-skill-bar">
+                            <div class="cv-skill-fill" style="width: 89%;"></div>
+                        </div>
+                    </div>
+                    <div class="cv-skill-item">
+                        <div class="cv-skill-label">
+                            <span>Mikrotik</span>
+                            <span class="cv-skill-pct">89%</span>
+                        </div>
+                        <div class="cv-skill-bar">
+                            <div class="cv-skill-fill" style="width: 89%;"></div>
+                        </div>
+                    </div>
+                    <div class="cv-skill-item">
+                        <div class="cv-skill-label">
+                            <span>Troubleshooting</span>
+                            <span class="cv-skill-pct">85%</span>
+                        </div>
+                        <div class="cv-skill-bar">
+                            <div class="cv-skill-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="cv-skill-item">
+                        <div class="cv-skill-label">
+                            <span>Figma</span>
+                            <span class="cv-skill-pct">90%</span>
+                        </div>
+                        <div class="cv-skill-bar">
+                            <div class="cv-skill-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="cv-skill-item">
+                        <div class="cv-skill-label">
+                            <span>Linux / Ubuntu</span>
+                            <span class="cv-skill-pct">80%</span>
+                        </div>
+                        <div class="cv-skill-bar">
+                            <div class="cv-skill-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Quotes -->
+            <div class="cv-block card cv-quote-card">
+                <p class="cv-quote">"Bukan tentang seberapa cepat kamu sampai, tapi seberapa kuat kamu bertahan di jalan yang benar."</p>
+                <span class="cv-quote-author">— Athallah Izzan Bianta</span>
+            </div>
+ 
+        </div>
+ 
+        <!-- RIGHT COLUMN -->
+        <div class="cv-col">
+ 
+            <!-- Pendidikan -->
+            <div class="cv-block card">
+                <h3 class="cv-block-title">PENDIDIKAN</h3>
+                <div class="cv-timeline">
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">2024 – Sekarang</span>
+                            <p class="cv-timeline-school">SMKN 7 Semarang</p>
+                            <p class="cv-timeline-sub">Jurusan Sistem Informasi Jaringan dan Aplikasi</p>
+                        </div>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">2021 – 2024</span>
+                            <p class="cv-timeline-school">SMPN 42 Semarang</p>
+                            <p class="cv-timeline-sub">Sekolah Menengah Pertama</p>
+                        </div>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">2015 – 2021</span>
+                            <p class="cv-timeline-school">SDN 01 Sendangmulyo</p>
+                            <p class="cv-timeline-sub">Sekolah Dasar Negeri</p>
+                        </div>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">2013 – 2015</span>
+                            <p class="cv-timeline-school">TK Nurul Ilmi</p>
+                            <p class="cv-timeline-sub">Taman Kanak-Kanak</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Pengalaman Lomba -->
+            <div class="cv-block card">
+                <h3 class="cv-block-title">PENGALAMAN / PRESTASI</h3>
+                <div class="cv-timeline">
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot cv-dot-gold"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">Olimpiade</span>
+                            <p class="cv-timeline-school">Olimpiade Sains Pelajar</p>
+                            <p class="cv-timeline-sub">Bidang Matematika — <span class="cv-badge cv-badge-bronze">Perunggu</span></p>
+                        </div>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot cv-dot-gold"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">Olimpiade</span>
+                            <p class="cv-timeline-school">Olimpiade Cendikia</p>
+                            <p class="cv-timeline-sub">Bidang Bahasa Indonesia — <span class="cv-badge cv-badge-bronze">Perunggu</span></p>
+                        </div>
+                        </div>
+                         <div class="cv-timeline-item">
+                        <div class="cv-timeline-dot cv-dot-gold"></div>
+                        <div class="cv-timeline-content">
+                            <span class="cv-timeline-year">Lomba</span>
+                            <p class="cv-timeline-school">Mengikuti 15 kali lomba LKBB</p>
+                            <p class="cv-timeline-sub">Tingkat Nasional <span class="cv-badge cv-badge-bronze">Juara Umum, juara utama,</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+ 
+    <!-- Download Button -->
+    <div style="text-align: center; margin: 2rem 0 8rem;">
+        <a href="CV_Athallah_Izzan_Bianta.pdf" download="CV_Athallah_Izzan_Bianta.pdf" class="cv-download-btn">Download CV ↓</a>
+    </div>
+ 
+</section>
+
+
+    <footer>
+        <h2>so that's my portofolio<br>cool right?</h2>
+        <p>Let's collaborate to build something extraordinary. I'm currently available for freelance projects.</p>
+        <button class="btn-solid">START A PROJECT</button>
+    </footer>
+
+    <script>
+        // Greeting languages for auto-switching
+        const greetings = [
+            { text: "welcome" },
+      
+        ];
+
+        const landingTitle = document.querySelector('.landing-title');
+        const landingPage = document.getElementById('landingPage');
+        const startBtn = document.getElementById('startBtn');
+        let greetingInterval;
+
+       
+    
+
+    
+
+        // Landing page functionality
+       const orbitScene = document.getElementById('orbitScene');
+const photoOrbit = document.getElementById('photoOrbit');
+const orbitR = 280;
+const cx = 210, cy = 280;
+
+const photos = [
+  'WhatsApp Image 2026-05-16 at 15.45.29.jpeg',
+  'image.png',
+  'WhatsApp Image 2026-05-16 at 20.49.59.jpeg',
+  
+];
+
+photos.forEach((src, i) => {
+  const angle = (i / photos.length) * 2 * Math.PI - Math.PI / 2;
+  const x = cx + orbitR * Math.cos(angle);
+  const y = cy + orbitR * Math.sin(angle);
+  const item = document.createElement('div');
+  item.className = 'photo-item';
+  item.style.left = (x - 45) + 'px';
+  item.style.top = (y - 55) + 'px';
+  const img = document.createElement('img');
+  img.src = src;
+  item.appendChild(img);
+  photoOrbit.appendChild(item);
+});
+
+document.getElementById('startBtn').addEventListener('click', () => {
+  document.getElementById('landingPage').classList.add('hidden');
+});
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            htmlElement.classList.add('light-mode');
+            themeToggle.textContent = '☀︎';
+        } else {
+            htmlElement.classList.remove('light-mode');
+            themeToggle.textContent = '☾';
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('light-mode');
+            const isLightMode = htmlElement.classList.contains('light-mode');
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+            themeToggle.textContent = isLightMode ? '☀︎' : '☾';
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar bubble scroll functionality
+        const navbar = document.querySelector('nav');
+        let lastScrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 100) {
+                // Scrolled down - show bubble
+                if (!navbar.classList.contains('bubble-mode')) {
+                    navbar.classList.add('bubble-mode');
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            } else {
+                // At top or near top - show full navbar
+                navbar.classList.remove('bubble-mode');
+            }
+            
+            lastScrollY = scrollY;
+        });
+
+        // Live clock functionality
+        const liveClock = document.getElementById('liveClock');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            liveClock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function updateStatus() {
+            const hour = new Date().getHours();
+            const isWorkingHours = hour >= 9 && hour < 18;
+            if (isWorkingHours) {
+                statusDot.className = 'status-dot available';
+                statusText.textContent = 'Online';
+            } else {
+                statusDot.className = 'status-dot busy';
+                statusText.textContent = 'Offline';
+            }
+        }
+
+        // Update clock every second
+        updateClock();
+        updateStatus();
+        setInterval(updateClock, 1000);
+        setInterval(updateStatus, 60000); // Check status every minute
+
+        // Intersection Observer for scroll fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Add observer to all cards, section headers, and content sections
+        document.querySelectorAll('.card, .section-header, section, .work-card, .exp-row').forEach(element => {
+            element.classList.add('fade-in-on-scroll');
+            observer.observe(element);
+        });
+
+        // Portfolio filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+        function filterPortfolio(category) {
+            portfolioCards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                const shouldShow = category === 'all' || cardCategory === category;
+                card.classList.toggle('hidden', !shouldShow);
+                if (shouldShow) {
+                    card.classList.add('fade-enter');
+                    setTimeout(() => card.classList.remove('fade-enter'), 350);
+                }
+            });
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterPortfolio(button.dataset.filter);
+            });
+        });
+
+        const portfolioModal = document.getElementById('portfolioModal');
+        const portfolioModalImage = document.getElementById('portfolioModalImage');
+        const portfolioModalCaption = document.getElementById('portfolioModalCaption');
+        const portfolioModalClose = document.getElementById('portfolioModalClose');
+
+        document.querySelectorAll('.portfolio-card[data-category="achievements"] .portfolio-card-btn').forEach(btn => {
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const card = btn.closest('.portfolio-card');
+                const image = card ? card.querySelector('.portfolio-card-img img') : null;
+                const title = card ? card.querySelector('.portfolio-card-title')?.textContent : '';
+                const desc = card ? card.querySelector('.portfolio-card-desc')?.textContent : '';
+
+                if (image && portfolioModal) {
+                    portfolioModalImage.src = image.src;
+                    portfolioModalImage.alt = image.alt || title || 'Achievement preview';
+                    portfolioModalCaption.textContent = title + (desc ? ' — ' + desc : '');
+                    portfolioModal.classList.add('active');
+                    portfolioModal.setAttribute('aria-hidden', 'false');
+                }
+            });
+        });
+
+        const closeModal = () => {
+            if (portfolioModal) {
+                portfolioModal.classList.remove('active');
+                portfolioModal.setAttribute('aria-hidden', 'true');
+            }
+        };
+
+        if (portfolioModalClose) {
+            portfolioModalClose.addEventListener('click', closeModal);
+        }
+
+        if (portfolioModal) {
+            portfolioModal.addEventListener('click', event => {
+                if (event.target === portfolioModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && portfolioModal && portfolioModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Typing Animation
+        const typingText = document.getElementById('typingText');
+        const fullText = 'SELAMAT DATANG';
+        let index = 0;
+
+        function typeText() {
+            if (index < fullText.length) {
+                typingText.textContent += fullText.charAt(index);
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+
+        // Start typing animation when page loads
+        typeText();
+    </script>
+
+</body>
+</html>
